@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Mamoon Naveed Abbasi</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #00f0ff;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #ff0033;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: #00f0ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ff0033;
+    }
+
+    .back-btn {
+      margin-top: 40px;
+      padding: 10px 20px;
+      background-color: #ff0033;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff0033;
+    }
+
+    .back-btn:hover {
+      background-color: #ff3366;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contact Me</h1>
+
+  <div class="info">📧 Email: mamoonnaveed712@gmail.com</div>
+  <div class="info">📱 Phone: +92-333-5417666</div>
+  <div class="info">🔗 GitHub: <a href="https://github.com/MamoonNaveedAbbasi" target="_blank">MamoonNaveedAbbasi</a></div>
+  <div class="info">📸 Instagram: <a href="https://www.instagram.com/moon_on_loop" target="_blank">@moon_on_loop</a></div>
+  <div class="info">🎵 TikTok: <a href="https://www.tiktok.com/@moon.on.loop" target="_blank">@moon.on.loop</a></div>
+
+  <a href="home.html" class="back-btn">Back to Home</a>
+
+  <audio id="bg-audio" autoplay loop muted>
+    <source src="bgmusic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("bg-audio");
+      setTimeout(() => {
+        audio.muted = false;
+        audio.play().catch(() => {});
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>
