@@ -99,7 +99,7 @@
   <script>
     const progressFill = document.getElementById('progress-fill');
     const percentText = document.getElementById('percent');
-    const flag = document.getElementById('soldier');
+    const flag = document.getElementById('flag');
     const enterBtn = document.getElementById('enter-btn');
     const audio = document.getElementById('bg-audio');
 
@@ -112,8 +112,8 @@
         percentText.textContent = progress + '%';
 
         const containerWidth = document.querySelector('.container').offsetWidth;
-        const flagwidth = flag.offsetWidth;
-        const maxLeft = containerWidth - flagwidth;
+        const flagWidth = flag.offsetWidth;
+        const maxLeft = containerWidth - flagWidth;
         flag.style.right = (maxRight * (progress / 100)) + 'px';
 
         progress++;
