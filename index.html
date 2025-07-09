@@ -131,6 +131,14 @@
       intervalId = setInterval(updateProgress, 50);
     });
   </script>
+  <script>
+  function playMusic() {
+    const audio = document.getElementById("bg-audio");
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  }
+</script>
+
 
 </body>
 </html>
