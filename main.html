@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mamoon Naveed Abbasi | Portfolio</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #00f0ff;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #ff0033;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #typewriter-box {
+      font-size: 20px;
+      width: 100%;
+      max-width: 600px;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      text-align: left;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .contact-btn {
+      padding: 12px 24px;
+      background-color: #ff0033;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff0033;
+    }
+
+    .contact-btn:hover {
+      background-color: #ff3366;
+      box-shadow: 0 0 25px #ff3366;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to My Neon Portfolio</h1>
+
+  <div id="typewriter-box"></div>
+
+  <a href="contact.html" class="contact-btn">Contact Me</a>
+
+  <audio id="bg-audio" autoplay loop muted>
+    <source src="bgmusic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const text = `Hi, I’m Mamoon Naveed Abbasi — a Software Engineering student at COMSATS University Islamabad and a passionate digital content creator.
+
+I’m from Bakote, Abbottabad. I enjoy building digital projects, exploring web technologies, and creating content that connects people.`;
+
+    let i = 0;
+    const speed = 20;
+    const target = document.getElementById("typewriter-box");
+
+    function typeWriter() {
+      if (i < text.length) {
+        target.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    typeWriter();
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("bg-audio");
+      setTimeout(() => {
+        audio.muted = false;
+        audio.play().catch(() => {});
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>
