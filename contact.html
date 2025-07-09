@@ -9,36 +9,45 @@
       background-color: #000;
       color: #00f0ff;
       font-family: 'Courier New', monospace;
-      text-align: center;
-      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 0;
     }
 
     h1 {
+      font-size: 28px;
       color: #ff0033;
       margin-bottom: 20px;
+      text-align: center;
     }
 
-    .info {
+    .contact-info {
       font-size: 18px;
-      margin-bottom: 12px;
+      text-align: center;
+      line-height: 1.6;
+      max-width: 600px;
     }
 
-    a {
+    .social-links a {
       color: #00f0ff;
+      margin: 0 10px;
       text-decoration: none;
+      font-weight: bold;
     }
 
-    a:hover {
-      color: #ff0033;
+    .social-links a:hover {
+      color: #ff3366;
     }
 
     .back-btn {
-      margin-top: 40px;
+      margin-top: 30px;
       padding: 10px 20px;
       background-color: #ff0033;
       color: white;
-      border: none;
       font-weight: bold;
+      border: none;
       border-radius: 6px;
       text-decoration: none;
       box-shadow: 0 0 15px #ff0033;
@@ -46,32 +55,41 @@
 
     .back-btn:hover {
       background-color: #ff3366;
+      box-shadow: 0 0 25px #ff3366;
     }
   </style>
 </head>
 <body>
 
-  <h1>Contact Me</h1>
+  <h1>Get in Touch</h1>
 
-  <div class="info">📧 Email: mamoonnaveed712@gmail.com</div>
-  <div class="info">📱 Phone: +92-333-5417666</div>
-  <div class="info">🔗 GitHub: <a href="https://github.com/MamoonNaveedAbbasi" target="_blank">MamoonNaveedAbbasi</a></div>
-  <div class="info">📸 Instagram: <a href="https://www.instagram.com/moon_on_loop" target="_blank">@moon_on_loop</a></div>
-  <div class="info">🎵 TikTok: <a href="https://www.tiktok.com/@moon.on.loop" target="_blank">@moon.on.loop</a></div>
+  <div class="contact-info">
+    <p><strong>Email:</strong> mamoonnaveed712@gmail.com</p>
+    <p><strong>Phone:</strong> 0333-5417666</p>
+    <div class="social-links">
+      <p>
+        <a href="https://www.instagram.com/moon_on_loop" target="_blank">Instagram</a> |
+        <a href="https://www.tiktok.com/@moon.on.loop" target="_blank">TikTok</a> |
+        <a href="https://github.com/MamoonNaveedAbbasi" target="_blank">GitHub</a>
+      </p>
+    </div>
+  </div>
 
-  <a href="home.html" class="back-btn">Back to Home</a>
+  <a href="home.html" class="back-btn">← Back to Portfolio</a>
 
-  <audio id="bg-audio" autoplay loop muted>
+  <!-- 🎵 Music (plays once per visit) -->
+  <audio id="bg-audio" autoplay>
     <source src="bgmusic.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       const audio = document.getElementById("bg-audio");
+      audio.loop = false;
+      audio.currentTime = 0;
       setTimeout(() => {
-        audio.muted = false;
         audio.play().catch(() => {});
-      }, 1000);
+      }, 500);
     });
   </script>
 
