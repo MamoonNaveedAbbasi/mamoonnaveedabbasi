@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enter | Mamoon's World</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #00f0ff;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #ff0033;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #ff0033;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; text-shadow: 0 0 20px #ff0033; }
+      100% { opacity: 0.6; text-shadow: 0 0 5px #ff0033; }
+    }
+
+    .enter-btn {
+      padding: 15px 30px;
+      background-color: #00f0ff;
+      color: #000;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #00f0ff;
+      transition: 0.3s;
+    }
+
+    .enter-btn:hover {
+      background-color: #ff0033;
+      color: white;
+      box-shadow: 0 0 25px #ff0033;
+    }
+
+    #loader {
+      display: none;
+      margin-top: 30px;
+      border: 6px solid #333;
+      border-top: 6px solid #00f0ff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #enter-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="enter-section">
+    <h1>Welcome to Mamoon's Universe</h1>
+    <button class="enter-btn" onclick="enterSite()">Enter</button>
+    <div id="loader"></div>
+  </div>
+
+  <audio id="bg-audio" autoplay>
+    <source src="bgmusic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const audio = document.getElementById("bg-audio");
+    audio.pause();
+
+    function enterSite() {
+      const loader = document.getElementById("loader");
+      const section = document.getElementById("enter-section");
+
+      audio.play().catch(() => {});
+      loader.style.display = "block";
+      section.querySelector("button").style.display = "none";
+
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
