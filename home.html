@@ -85,16 +85,14 @@ I’m from Bakote, Abbottabad. I enjoy building digital projects, exploring web 
     <source src="bgmusic.mp3" type="audio/mpeg" />
   </audio>
 
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const audio = document.getElementById("bg-audio");
-      audio.loop = false;
-      audio.currentTime = 0;
-      setTimeout(() => {
-        audio.play().catch(() => {});
-      }, 500);
-    });
-  </script>
+ <script>
+  function playMusic() {
+    const audio = document.getElementById("bg-audio");
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  }
+</script>
+
 
 </body>
 </html>
