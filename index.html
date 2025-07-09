@@ -126,7 +126,11 @@
       intervalId = setInterval(updateProgress, 50);
     });
   </script>
-  <script>
+ <!-- Audio element WITHOUT autoplay -->
+  <audio id="bg-audio">
+    <source src="bgmusic.mp3" type="audio/mpeg" />
+  </audio>
+ <script>
   function playMusic() {
     const audio = document.getElementById("bg-audio");
     audio.currentTime = 0;
