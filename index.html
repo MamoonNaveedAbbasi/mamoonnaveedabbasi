@@ -1,118 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Enter | Mamoon's World</title>
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #00f0ff;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Welcome | Mamoon's Portfolio</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #000;
+    color: #00f0ff;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-    h1 {
-      font-size: 32px;
-      color: #ff0033;
-      margin-bottom: 30px;
-      text-shadow: 0 0 10px #ff0033;
-      animation: flicker 1.5s infinite alternate;
-    }
+  .container {
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+  }
 
-    @keyframes flicker {
-      0% { opacity: 1; text-shadow: 0 0 20px #ff0033; }
-      100% { opacity: 0.6; text-shadow: 0 0 5px #ff0033; }
-    }
+  .soldier {
+    font-size: 64px;
+    position: absolute;
+    top: -80px;
+    left: 0;
+    transition: left 0.1s linear;
+  }
 
-    .enter-btn {
-      padding: 15px 30px;
-      background-color: #00f0ff;
-      color: #000;
-      border: none;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 20px #00f0ff;
-      transition: 0.3s;
-    }
+  .progress-bar {
+    width: 100%;
+    height: 30px;
+    background: #222;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #00f0ff;
+    margin-top: 100px;
+  }
 
-    .enter-btn:hover {
-      background-color: #ff0033;
-      color: white;
-      box-shadow: 0 0 25px #ff0033;
-    }
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #00f0ff, #ff0033);
+    border-radius: 15px 0 0 15px;
+    box-shadow: 0 0 10px #ff0033;
+    transition: width 0.1s linear;
+  }
 
-    #loader {
-      display: none;
-      margin-top: 30px;
-      border: 6px solid #333;
-      border-top: 6px solid #00f0ff;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-    }
+  .percent {
+    margin-top: 20px;
+    font-size: 48px;
+    font-weight: bold;
+    text-shadow: 0 0 15px #ff0033;
+  }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+  button#enter-btn {
+    margin-top: 40px;
+    padding: 14px 32px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff0033;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff0033;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    #enter-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  </style>
+  button#enter-btn:hover {
+    background-color: #ff3366;
+    box-shadow: 0 0 35px #ff3366;
+  }
+</style>
 </head>
 <body>
 
-  <div id="enter-section">
-    <h1>Welcome to Mamoon's Universe</h1>
-    <button class="enter-btn" onclick="enterSite()">Enter</button>
-    <div id="loader"></div>
+  <div class="container">
+    <div class="soldier" id="soldier">🏃‍♂️</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="percent" id="percent">0%</div>
+    <button id="enter-btn">Enter</button>
   </div>
-<audio id="bg-audio" autoplay>
-  <source src="bgmusic.mp3" type="audio/mpeg" />
-</audio>
 
-<script>
-  const audio = document.getElementById("bg-audio");
-  audio.pause(); // Prevent autoplay
+  <!-- Audio element WITHOUT autoplay -->
+  <audio id="bg-audio">
+    <source src="bgmusic.mp3" type="audio/mpeg" />
+  </audio>
 
-  function enterSite() {
-    audio.currentTime = 0; // Always restart from beginning
-    audio.play().catch(() => {});
-    
-    document.getElementById("loader").style.display = "block";
-    document.querySelector("button").style.display = "none";
+  <script>
+    const progressFill = document.getElementById('progress-fill');
+    const percentText = document.getElementById('percent');
+    const soldier = document.getElementById('soldier');
+    const enterBtn = document.getElementById('enter-btn');
+    const audio = document.getElementById('bg-audio');
 
-    setTimeout(() => {
-      window.location.href = "home.html";
-    }, 3000);
-  }
-</script>
+    let progress = 0;
+    let intervalId;
 
+    function updateProgress() {
+      if (progress <= 100) {
+        progressFill.style.width = progress + '%';
+        percentText.textContent = progress + '%';
 
-    function enterSite() {
-      const loader = document.getElementById("loader");
-      const section = document.getElementById("enter-section");
+        const containerWidth = document.querySelector('.container').offsetWidth;
+        const soldierWidth = soldier.offsetWidth;
+        const maxLeft = containerWidth - soldierWidth;
+        soldier.style.left = (maxLeft * (progress / 100)) + 'px';
 
-      audio.play().catch(() => {});
-      loader.style.display = "block";
-      section.querySelector("button").style.display = "none";
-
-      setTimeout(() => {
-        window.location.href = "home.html";
-      }, 3000);
+        progress++;
+      } else {
+        clearInterval(intervalId);
+        // Redirect after complete
+        window.location.href = 'home.html';
+      }
     }
+
+    enterBtn.addEventListener('click', () => {
+      enterBtn.disabled = true;
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+      intervalId = setInterval(updateProgress, 50);
+    });
   </script>
 
 </body>
