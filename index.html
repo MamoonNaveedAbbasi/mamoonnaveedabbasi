@@ -26,7 +26,7 @@
     position: relative;
   }
 
-  .solider {
+  .soldier {
     font-size: 64px;
     position: absolute;
     top: -80px;
@@ -83,7 +83,7 @@
 <body>
 
   <div class="container">
-    <div class="solider" id="solider">🏃🏻</div>
+    <div class="soldier" id="soldier">🏃🏻</div>
     <div class="progress-bar">
       <div class="progress-fill" id="progress-fill"></div>
     </div>
@@ -99,7 +99,7 @@
   <script>
     const progressFill = document.getElementById('progress-fill');
     const percentText = document.getElementById('percent');
-    const solider= document.getElementById('solider');
+    const soldier= document.getElementById('soldier');
     const enterBtn = document.getElementById('enter-btn');
     const audio = document.getElementById('bg-audio');
 
@@ -112,9 +112,9 @@
         percentText.textContent = progress + '%';
 
         const containerWidth = document.querySelector('.container').offsetWidth;
-        const soliderWidth = solider.offsetWidth;
-        const maxLeft = containerWidth - soliderWidth;
-        solider.style.right = (maxRight * (progress / 100)) + 'px';
+        const soldierWidth = soldier.offsetWidth;
+        const maxRight = containerWidth - soldierWidth;
+        soldier.style.right = (maxRight * (progress / 100)) + 'px';
 
         progress++;
       } else {
